@@ -1,6 +1,6 @@
 package com.glt.enums;
 
-public enum Status {
+public enum State {
 
     ACTIVE,DRAFT
 }

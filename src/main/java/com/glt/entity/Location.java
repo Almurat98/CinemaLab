@@ -15,19 +15,14 @@ import java.util.List;
 public class Location extends BaseEntity {
 
     private String name;
-    @Transient
     private BigDecimal latitude;
-    @Transient
     private BigDecimal longitude;
-
     private String address;
     private String postalCode;
     private String country;
     private String state;
     private String city;
 
-    @OneToMany(mappedBy = "location")
-    private List<Cinema> cinemas;
 
 
 

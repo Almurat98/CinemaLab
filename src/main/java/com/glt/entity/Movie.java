@@ -1,13 +1,12 @@
 package com.glt.entity;
 
-import com.glt.enums.Status;
+import com.glt.enums.State;
 import com.glt.enums.Type;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,13 +16,14 @@ import java.util.List;
 public class Movie extends BaseEntity{
 
 
-    private int duration;
+    private Integer duration;
     private String name;
     private BigDecimal price;
-    @Column(columnDefinition = "DATE_TIME")
+    @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime releaseDate;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private State state;
+    @Column(columnDefinition = "text")
     private String summary;
     @Enumerated(EnumType.STRING)
     private Type type;

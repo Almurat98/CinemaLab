@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class AccountDetail extends BaseEntity{
+public class AccountDetails extends BaseEntity{
 
     private String address;
     private int age;
@@ -24,6 +25,8 @@ public class AccountDetail extends BaseEntity{
     private String state;
 
 
+    @OneToOne(mappedBy = "accountDetails")
+    private UserAccount userAccount;
 
 
 
