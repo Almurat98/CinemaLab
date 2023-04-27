@@ -2,7 +2,9 @@ package com.glt.entity;
 
 import com.glt.enums.Role;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,7 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class AccountDetails extends BaseEntity{
 
@@ -28,13 +31,17 @@ public class AccountDetails extends BaseEntity{
     @OneToOne(mappedBy = "accountDetails")
     private UserAccount userAccount;
 
-
-
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "AccountDetails{" +
+                "address='" + address + '\'' +
+                ", age=" + age +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", name='" + name + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", role=" + role +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }

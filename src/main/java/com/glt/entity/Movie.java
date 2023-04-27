@@ -3,7 +3,9 @@ package com.glt.entity;
 import com.glt.enums.State;
 import com.glt.enums.Type;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,7 +13,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Movie extends BaseEntity{
 
@@ -34,4 +37,16 @@ public class Movie extends BaseEntity{
     inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genre;
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "duration=" + duration +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", releaseDate=" + releaseDate +
+                ", state=" + state +
+                ", summary='" + summary + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }
