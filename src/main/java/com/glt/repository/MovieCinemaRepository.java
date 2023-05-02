@@ -4,6 +4,7 @@ import com.glt.entity.Location;
 import com.glt.entity.MovieCinema;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,7 +35,10 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema,Long> {
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query to count all movie cinemas by cinema id
-
+    @Query(value = "SELECT count (MovieCinema ) FROM MovieCinema where cinema.id=?1",nativeQuery = true)
+     Integer movieCinemaCountByCinemaId(@Param("id") Long id);
     //Write a native query that returns all movie cinemas by location name
+    @Query(value = "SELECT * FROM MovieCinema where Location.name = ?1",nativeQuery = true)
+    List<MovieCinema>findByLocationName(@Param("name") String name);
 
 }
