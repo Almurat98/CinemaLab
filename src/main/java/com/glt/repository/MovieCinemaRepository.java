@@ -16,17 +16,17 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema,Long> {
     //Write a derived query to read movie cinema with id
    Optional<MovieCinema> findById(Long id);
     //Write a derived query to count all movie cinemas with a specific cinema id
-    List<MovieCinema>findByCinemaId(Long id);
+    Integer countByCinemaId(Long id);
     //Write a derived query to count all movie cinemas with a specific movie id
-    List<MovieCinema>findAllByMovieId(Long id);
+    Integer countByMovieId(Long id);
     //Write a derived query to list all movie cinemas with higher than a specific date
     List<MovieCinema>findAllByDateTimeAfter(LocalDateTime dateTime);
     //Write a derived query to find the top 3 expensive movies
-    List<MovieCinema>findTop3ByMoviePriceOrderByMoviePriceDesc();
+    List<MovieCinema>findTop3ByOrderByMoviePriceDesc();
     //Write a derived query to list all movie cinemas that contain a specific movie name
     List<MovieCinema>findAllByMovieNameContaining(String name);
     //Write a derived query to list all movie cinemas in a specific location
-    List<MovieCinema>findAllByCinemaLocation(Location location);
+    List<MovieCinema>findAllByCinemaLocationName(String locationName);
     // ------------------- JPQL QUERIES ------------------- //
 
     //Write a JPQL query to list all movie cinemas with higher than a specific date
@@ -35,10 +35,11 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema,Long> {
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query to count all movie cinemas by cinema id
-    @Query(value = "SELECT count (MovieCinema ) FROM MovieCinema where cinema.id=?1",nativeQuery = true)
+    @Query(value = "SELECT count (*) FROM movie_cinema where cinema_id=?1",nativeQuery = true)
      Integer movieCinemaCountByCinemaId(@Param("id") Long id);
     //Write a native query that returns all movie cinemas by location name
-    @Query(value = "SELECT * FROM MovieCinema where Location.name = ?1",nativeQuery = true)
+    @Query(value = "SELECT * FROM movie_cinema mc join cinema c on mc.cinema_id = c.id join location l " +
+            "on c.location_id=l.id where  l.name= ?1",nativeQuery = true)
     List<MovieCinema>findByLocationName(@Param("name") String name);
 
 }

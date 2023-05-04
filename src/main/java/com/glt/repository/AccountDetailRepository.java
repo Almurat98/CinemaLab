@@ -35,11 +35,11 @@ public interface AccountDetailRepository extends JpaRepository<AccountDetails,Lo
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query to read all accounts with an age lower than a specific value
-    @Query(value = "SELECT * FROM AccountDetails where age <= ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM account_details where age <= ?1", nativeQuery = true)
     List<AccountDetails>findAllAgeLowerThan(@Param("age") Integer age);
     //Write a native query to read all accounts that a specific value can be containable in the name, address, country, state city
 
-    @Query(value = "select * from AccountDetails where name = ?1 or address=?2 or country=?3 or state=?4 or city = ?5",nativeQuery = true )
+    @Query(value = "select * from account_details where name = ?1 or address=?2 or country=?3 or state=?4 or city = ?5",nativeQuery = true )
     List<AccountDetails>findAllWithSpecificValue(@Param("pattern") String pattern);
 
 }
